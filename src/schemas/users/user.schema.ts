@@ -1,5 +1,7 @@
 import { t, Static as s } from "elysia";
 
+export const GetUserSchema = t.Object({ id: t.String() });
+
 export const CreateUserSchema = t.Object({
 	name: t.String(),
 	email: t.String({
