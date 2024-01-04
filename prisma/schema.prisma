@@ -15,8 +15,17 @@ model User {
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt()
   todos Todo[]
+  auth_links AuthLinks?
 
   @@map("users")
+}
+
+model AuthLinks {
+  user User @relation(fields: [user_id], references: [id])
+  user_id String @unique
+  code String 
+
+  @@map("auth_links")
 }
 
 enum Status {
