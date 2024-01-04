@@ -20,5 +20,12 @@ export const UserSchema = t.Object({
 	updated_at: t.Date(),
 });
 
+export const ResponseSchema = t.Object({
+	status: t.Numeric(),
+	message: t.String(),
+	data: t.Any(),
+});
+
 export type TCreateUser = s<typeof CreateUserSchema>;
 export type TUser = s<typeof UserSchema>;
+export type TResponse = s<typeof ResponseSchema>;
