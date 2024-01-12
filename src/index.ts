@@ -5,6 +5,12 @@ import {
 	get_user_router,
 	send_email_auth_router,
 	update_user_router,
+	create_todo_router,
+	get_todo_router,
+	get_todos_from_status_router,
+	get_todos_router,
+	update_todo_router,
+	delete_todo_router,
 } from "@/routers";
 import cors from "@elysiajs/cors";
 
@@ -34,11 +40,14 @@ const app = new Elysia()
 	.use(get_user_router)
 	.use(update_user_router)
 	.use(send_email_auth_router)
-	.use(auth_links_authenticate)
+	.use(create_todo_router)
+	.use(get_todo_router)
+	.use(get_todos_router)
+	.use(get_todos_from_status_router)
+	.use(update_todo_router)
+	.use(delete_todo_router)
 	.listen(3000);
 
-console.log(
-	`🦊 Server is running at ${app.server?.hostname}:${app.server?.port}`,
-);
+console.log("🦊 Server is running at htpp://localhost:3000");
 
 export type APP = typeof app;

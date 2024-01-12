@@ -5,10 +5,9 @@ import { Elysia } from "elysia";
 export const update_user_router = (app: Elysia) =>
 	app.put(
 		"/api/users/update/:id",
-		({ body, params }) => update_user(body, params.id),
+		async ({ body, params }) => await update_user(body, params.id),
 		{
 			body: CreateUserSchema,
 			params: GetUserSchema,
-			detail: { tags: ["Users"] },
 		},
 	);

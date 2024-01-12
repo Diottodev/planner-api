@@ -16,16 +16,9 @@ export const UserSchema = t.Object({
 	name: t.String(),
 	email: t.String(),
 	photo: t.Optional(t.String()),
-	created_at: t.Date(),
-	updated_at: t.Date(),
-});
-
-export const ResponseSchema = t.Object({
-	status: t.Numeric(),
-	message: t.String(),
-	data: t.Any(),
+	created_at: t.Optional(t.String()),
+	updated_at: t.Optional(t.String()),
 });
 
 export type TCreateUser = s<typeof CreateUserSchema>;
 export type TUser = s<typeof UserSchema>;
-export type TResponse = s<typeof ResponseSchema>;

@@ -1,20 +1,11 @@
-import Elysia, { t } from "elysia";
-import { is_authenticated } from "./authentication";
+import Elysia from "elysia";
+import { authentication } from "./authentication";
 import { prisma } from "@/database/prisma";
-import cookie from "@elysiajs/cookie";
-import jwt from "@elysiajs/jwt";
-import { JwtPayloadSchema } from "@/schemas/jwt/jwt.schema";
+import { set_jwt_cookie } from "./set-jwt-cookie";
 
 export const auth_links_authenticate = (app: Elysia) =>
 	app
-		.use(
-			jwt({
-				name: "jwt",
-				secret: process.env.JWT_SECRET_KEY as string,
-				schema: JwtPayloadSchema,
-			}),
-		)
-		.use(cookie())
+		.use(set_jwt_cookie)
 		.get(
 			"/api/auth-links/authenticate",
 			async ({ query, set, jwt, setCookie }) => {
@@ -27,13 +18,13 @@ export const auth_links_authenticate = (app: Elysia) =>
 
 				setCookie("auth", auth, {
 					maxAge: 7 * 86400,
-					path: "/",
+					path: "/api/todos/*",
 				});
 
 				set.redirect = query.redirect;
 			},
 		)
-		.use(is_authenticated)
+		.use(authentication)
 		.get("/pannel", async ({ user, set }) => {
 			if (!user) {
 				set.status = 401;
