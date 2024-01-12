@@ -46,6 +46,7 @@ const app = new Elysia()
 	.use(get_todos_from_status_router)
 	.use(update_todo_router)
 	.use(delete_todo_router)
+	.get("/", () => "🦊 Server is running")
 	.listen(3000);
 
 console.log("🦊 Server is running at htpp://localhost:3000");
