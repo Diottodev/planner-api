@@ -13,7 +13,7 @@ import {
 } from "@/routers";
 import cors from "@elysiajs/cors";
 
-const app = new Elysia()
+const server = new Elysia()
 	.onError(({ error, set }) => {
 		return {
 			status: set.status,
@@ -50,4 +50,4 @@ const app = new Elysia()
 
 console.log("🦊 Server is running at htpp://localhost:3000");
 
-export type APP = typeof app;
+export type APP = typeof server;
