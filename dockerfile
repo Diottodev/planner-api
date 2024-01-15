@@ -1,9 +1,9 @@
-FROM oven/bun:1
+FROM oven/bun:1.0
 WORKDIR /app
-COPY . .
+COPY package.json package.json
+COPY bun.lockb bun.lockb
 RUN bun install
- 
-ARG PORT
-EXPOSE ${PORT:-3000}
- 
-CMD ["bun", "src/server.ts"]
+RUN bun build:ssr
+COPY . .
+EXPOSE 3000
+ENTRYPOINT ["bun", "build/server.js"]
