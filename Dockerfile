@@ -1,9 +1,7 @@
 FROM oven/bun:1.0
 WORKDIR /app
-COPY package.json package.json
-COPY bun.lockb bun.lockb
+COPY package*.json bun.lockb ./
 RUN bun install
 RUN bun build:prod
 COPY . .
-EXPOSE 3000
-ENTRYPOINT ["bun", "build/server.js"]
+CMD [ "bun", "start" ]
