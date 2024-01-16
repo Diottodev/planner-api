@@ -3,7 +3,7 @@ import {
 	tranporter_service,
 	convert_react_to_html,
 } from "@/auth";
-import { get_user_from_email } from "@/controllers/users/get-user-from-email";
+import { get_user_from_email } from "@/controllers/users/get-user-from-email.controller";
 import { EmailAuthSchema } from "@/schemas/email/email-auth.schema";
 import { create_id } from "@/util/create-id";
 import { Elysia, NotFoundError } from "elysia";
@@ -20,17 +20,18 @@ export const send_email_auth_router = (app: Elysia) =>
 				throw new NotFoundError("email não cadastrado");
 			}
 
+			const response = await user_from_email.json();
 			const auth_id = create_id();
 
 			await prisma.authLinks.upsert({
 				where: {
-					user_id: user_from_email.data.id,
+					user_id: response.data.id,
 				},
 				update: {
 					code: auth_id,
 				},
 				create: {
-					user_id: user_from_email.data.id,
+					user_id: response.data.id,
 					code: auth_id,
 				},
 			});
