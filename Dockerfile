@@ -6,10 +6,9 @@ COPY package.json .
 COPY bun.lockb .
 COPY prisma .
 
-COPY . .
+RUN bun install && bunx prisma generate
 
-RUN bun install
-RUN bunx prisma generate
+COPY . .
 
 EXPOSE 8080
 
