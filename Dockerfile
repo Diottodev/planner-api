@@ -2,13 +2,16 @@ FROM oven/bun
 
 WORKDIR /app
 
+COPY ./prisma prisma
 COPY package.json .
 COPY bun.lockb .
 
 RUN bun install
+RUN bun build:prod
+RUN bun generate
 
 COPY . .
 
-EXPOSE 3000
+EXPOSE 8080
 
-CMD ["bun", "src/server.ts"]
+CMD ["bun", "build/server.js"]
