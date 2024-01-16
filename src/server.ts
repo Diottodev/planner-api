@@ -13,7 +13,7 @@ import {
 } from "@/routers";
 import cors from "@elysiajs/cors";
 
-const server = () =>
+const server = 
 	new Elysia()
 		.get("/", () => {
 			return new Response("🦊 Server is running");
@@ -51,8 +51,7 @@ const server = () =>
 		.use(delete_todo_router)
 		.listen(3000);
 
-console.log("🦊 Server is running at http://localhost:3000");
+console.log(`🦊 Server is running at ${server?.server?.url}`);
 
 export type APP = typeof server;
 
-server();
