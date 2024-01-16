@@ -29,11 +29,11 @@ export default function email_auth({
 	url,
 }: EmailTemplateProps) {
 	return (
-		<Html>
-			<Head />
+		// biome-ignore lint/a11y/useHtmlLang: <explanation>
+		<html>
 			<Preview>{preview}</Preview>
 			<Tailwind>
-				<Body className="bg-white my-auto mx-auto font-sans">
+				<body className="bg-white my-auto mx-auto font-sans">
 					<Container className="border border-solid border-[#eaeaea] rounded my-[40px] mx-auto p-[20px] w-[465px]">
 						<Section className="mt-[32px]">
 							<Img
@@ -79,8 +79,8 @@ export default function email_auth({
 							</Text>
 						</Section>
 					</Container>
-				</Body>
+				</body>
 			</Tailwind>
-		</Html>
+		</html>
 	);
 }
