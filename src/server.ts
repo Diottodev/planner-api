@@ -15,7 +15,9 @@ import cors from "@elysiajs/cors";
 
 const server = () =>
 	new Elysia()
-		.get("/", () => new Response.json("🦊 Server is running"))
+		.get("/", () => {
+			return new Response("🦊 Server is running");
+		})
 		.onError(({ error, set }) => {
 			return {
 				status: set.status,
