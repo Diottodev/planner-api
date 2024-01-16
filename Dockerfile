@@ -1,6 +1,14 @@
-FROM oven/bun:1.0
+FROM oven/bun
+
 WORKDIR /app
-COPY package*.json bun.lockb ./
+
+COPY package.json .
+COPY bun.lockb .
+
 RUN bun install
+
 COPY . .
-CMD [ "bun", "dev" ]
+
+EXPOSE 3000
+
+CMD ["bun", "src/server.ts"]
