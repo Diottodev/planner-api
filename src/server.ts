@@ -10,12 +10,13 @@ import {
 	get_todos_router,
 	update_todo_router,
 	delete_todo_router,
+	auth_links_authenticate,
 } from "@/routers";
 import cors from "@elysiajs/cors";
 
 const server = 
 	new Elysia()
-		.get("/", () => {
+.get("/", () => {
 			return new Response("🦊 Server is running");
 		})
 		.onError(({ error, set }) => {
@@ -43,6 +44,7 @@ const server =
 		.use(get_user_router)
 		.use(update_user_router)
 		.use(send_email_auth_router)
+		.use(auth_links_authenticate)
 		.use(create_todo_router)
 		.use(get_todo_router)
 		.use(get_todos_router)

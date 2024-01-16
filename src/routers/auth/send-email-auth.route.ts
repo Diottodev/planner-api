@@ -20,7 +20,7 @@ export const send_email_auth_router = (app: Elysia) =>
 				throw new NotFoundError("email não cadastrado");
 			}
 
-			const response = await user_from_email.json();
+			const response = user_from_email;
 			const auth_id = create_id();
 
 			await prisma.authLinks.upsert({

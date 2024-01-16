@@ -16,11 +16,9 @@ export async function update_todo(body: TTodo) {
 		throw new NotFoundError("erro ao atualizar tarefa");
 	}
 
-	return new Response(
-		JSON.stringify({
+	return {
 			status: 200,
 			message: "tarefas atualizada com sucesso",
 			data,
-		}),
-	);
+		}
 }

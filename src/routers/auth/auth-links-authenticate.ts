@@ -18,7 +18,7 @@ export const auth_links_authenticate = (app: Elysia) =>
 
 				setCookie("auth", auth, {
 					maxAge: 7 * 86400,
-					path: "/api/todos/*",
+					path: "/",
 				});
 
 				set.redirect = query.redirect;

@@ -8,11 +8,9 @@ export async function get_user_from_email(email: string) {
 		throw new NotFoundError("perfil não encontrado");
 	}
 
-	return new Response(
-		JSON.stringify({
+	return {
 			status: 200,
 			message: "perfil encontrado",
 			data: user,
-		}),
-	);
+		}
 }

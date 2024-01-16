@@ -29,13 +29,11 @@ export async function get_todos_from_status(
 		completed: "completadas",
 	};
 
-	return new Response(
-		JSON.stringify({
+	return {
 			status: 200,
 			message: `tarefas ${translate_status[status]} ${
 				important === true ? "importantes" : ""
 			} encontradas com sucesso`,
 			data,
-		}),
-	);
+		}
 }

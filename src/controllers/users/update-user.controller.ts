@@ -10,11 +10,9 @@ export async function update_user(body: TCreateUser, id: string) {
 	}
 	const data = await update_user_repository(body, id);
 
-	return new Response(
-		JSON.stringify({
+	return {
 			status: 200,
 			message: "perfil alterado com sucesso",
 			data,
-		}),
-	);
+		}
 }

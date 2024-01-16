@@ -15,11 +15,9 @@ export async function delete_todo(user_id: string, id: string) {
 		throw new NotFoundError("tarefa não encontrada");
 	}
 
-	return new Response(
-		JSON.stringify({
+	return {
 			status: 200,
 			message: `tarefa ${data.title} deletada com sucesso`,
 			data,
-		}),
-	);
+		}
 }
