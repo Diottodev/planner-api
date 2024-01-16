@@ -7,11 +7,9 @@ COPY package.json .
 COPY bun.lockb .
 
 RUN bun install
-RUN bun build:prod
-RUN bun generate
 
 COPY . .
 
 EXPOSE 8080
 
-CMD ["bun", "build/server.js"]
+CMD ["bun", "src/server.ts"]
