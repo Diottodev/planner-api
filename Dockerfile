@@ -7,7 +7,7 @@ COPY bun.lockb .
 COPY prisma .
 
 RUN bun install
-RUN bun generate
+RUN bunx prisma generate
 
 
 COPY . .
