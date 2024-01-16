@@ -8,8 +8,8 @@ COPY prisma .
 
 COPY . .
 
-RUN bunx prisma generate
 RUN bun install
+RUN bunx prisma generate
 
 EXPOSE 8080
 
