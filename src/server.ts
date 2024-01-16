@@ -15,7 +15,7 @@ import cors from "@elysiajs/cors";
 
 const server = () =>
 	new Elysia()
-		.get("/", () => "🦊 Server is running")
+		.get("/", () => new Response.json("🦊 Server is running"))
 		.onError(({ error, set }) => {
 			return {
 				status: set.status,
@@ -53,6 +53,4 @@ console.log("🦊 Server is running at http://localhost:3000");
 
 export type APP = typeof server;
 
-(() => {
-	server();
-})();
+server();
