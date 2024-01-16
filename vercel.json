@@ -1,3 +1,6 @@
 {
-	"rewrites": [{ "source": "/api/(.*)", "destination": "/api" }]
+	"rewrites": [{ "source": "/api/(.*)", "destination": "/api" }],
+	"outputDirectory": "build",
+	"buildCommand": "bun build:prod",
+	"installCommand": "bun install"
 }
