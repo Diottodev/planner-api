@@ -5,7 +5,7 @@
 		"generate": "bunx prisma generate",
 		"deploy": "bunx prisma migrate deploy",
 		"dev": "bun run --watch src/server.ts",
-		"build:prod": "bun build src/server.ts --target=bun --outfile=build/server.js && bunx prisma generate",
+		"build:prod": "bun build src/server.ts --target=bun --outfile=build/server.js && bunx prisma generate && bun start",
 		"start": "bun run build/server.js"
 	},
 	"prisma": {
