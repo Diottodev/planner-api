@@ -1,4 +1,4 @@
-FROM oven/bun
+FROM oven/bun:1.0
 
 WORKDIR /app
 
@@ -6,11 +6,10 @@ COPY package.json .
 COPY bun.lockb .
 COPY prisma .
 
-RUN bun install
-RUN bunx prisma generate
-
-
 COPY . .
+
+RUN bunx prisma generate
+RUN bun install
 
 EXPOSE 8080
 
