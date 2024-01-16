@@ -1,4 +1,4 @@
-import { get_todo } from "@/handlers";
+import { get_todo } from "@/controllers";
 import { Elysia } from "elysia";
 
 export const get_todo_router = (app: Elysia) =>

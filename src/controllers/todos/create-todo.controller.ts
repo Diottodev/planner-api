@@ -17,9 +17,11 @@ export async function create_todo(body: TCreateTodo) {
 		throw new NotFoundError("erro ao criar tarefa");
 	}
 
-	return {
-		status: 201,
-		message: "tarefa criada com sucesso",
-		data,
-	};
+	return new Response(
+		JSON.stringify({
+			status: 201,
+			message: "tarefa criada com sucesso",
+			data,
+		}),
+	);
 }

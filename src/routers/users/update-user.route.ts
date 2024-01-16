@@ -1,4 +1,4 @@
-import { update_user } from "@/handlers";
+import { update_user } from "@/controllers";
 import { CreateUserSchema, GetUserSchema } from "@/schemas/users/user.schema";
 import { Elysia } from "elysia";
 

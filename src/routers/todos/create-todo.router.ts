@@ -1,4 +1,4 @@
-import { create_todo } from "@/handlers";
+import { create_todo } from "@/controllers";
 import { CreateTodoSchema } from "@/schemas";
 import { Elysia } from "elysia";
 import { authentication } from "../auth/authentication";

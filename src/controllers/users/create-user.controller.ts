@@ -11,9 +11,11 @@ export async function create_user(body: TCreateUser) {
 	}
 	const data = await create_user_repository(body);
 
-	return {
-		status: 201,
-		message: "conta cadastrada com sucesso",
-		data,
-	};
+	return new Response(
+		JSON.stringify({
+			status: 201,
+			message: "conta cadastrada com sucesso",
+			data,
+		}),
+	);
 }

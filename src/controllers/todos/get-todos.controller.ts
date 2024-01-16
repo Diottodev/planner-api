@@ -14,9 +14,11 @@ export async function get_todos(user_id: string) {
 		throw new NotFoundError("tarefas não encontradas");
 	}
 
-	return {
-		status: 200,
-		message: "tarefas encontradas com sucesso",
-		data,
-	};
+	return new Response(
+		JSON.stringify({
+			status: 200,
+			message: "tarefas encontradas com sucesso",
+			data,
+		}),
+	);
 }

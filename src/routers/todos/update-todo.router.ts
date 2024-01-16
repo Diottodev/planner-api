@@ -1,4 +1,4 @@
-import { update_todo } from "@/handlers";
+import { update_todo } from "@/controllers";
 import { TodoSchema } from "@/schemas";
 import { Elysia } from "elysia";
 import { authentication } from "../auth/authentication";

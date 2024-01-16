@@ -1,4 +1,4 @@
-import { get_todos } from "@/handlers";
+import { get_todos } from "@/controllers";
 import { Elysia } from "elysia";
 import { authentication } from "../auth/authentication";
 

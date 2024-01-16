@@ -1,4 +1,4 @@
-import { get_todos_from_status } from "@/handlers";
+import { get_todos_from_status } from "@/controllers";
 import { TCompleted, QueryTodos } from "@/schemas/todos/todos.schema";
 import { Elysia } from "elysia";
 import { authentication } from "../auth/authentication";

@@ -1,4 +1,4 @@
-import { delete_todo } from "@/handlers";
+import { delete_todo } from "@/controllers";
 import { Elysia } from "elysia";
 import { authentication } from "../auth/authentication";
 

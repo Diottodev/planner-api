@@ -3,7 +3,7 @@ import {
 	tranporter_service,
 	convert_react_to_html,
 } from "@/auth";
-import { get_user_from_email } from "@/handlers/users/get-user-from-email";
+import { get_user_from_email } from "@/controllers/users/get-user-from-email";
 import { EmailAuthSchema } from "@/schemas/email/email-auth.schema";
 import { create_id } from "@/util/create-id";
 import { Elysia, NotFoundError } from "elysia";

@@ -1,6 +1,6 @@
 import { update_user as update_user_repository } from "@/repositories/users/update-user.repository";
 import { TCreateUser } from "@/schemas/users/user.schema";
-import { get_user } from "./get-user.handler";
+import { get_user } from "./get-user.controller";
 
 export async function update_user(body: TCreateUser, id: string) {
 	const user = await get_user(id);
@@ -10,9 +10,11 @@ export async function update_user(body: TCreateUser, id: string) {
 	}
 	const data = await update_user_repository(body, id);
 
-	return {
-		status: 200,
-		message: "perfil alterado com sucesso",
-		data,
-	};
+	return new Response(
+		JSON.stringify({
+			status: 200,
+			message: "perfil alterado com sucesso",
+			data,
+		}),
+	);
 }
