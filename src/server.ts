@@ -24,16 +24,7 @@ const server = new Elysia()
 			message: error.message,
 		};
 	})
-	.use(
-		cors({
-			credentials: true,
-			allowedHeaders: ["Content-type"],
-			methods: ["GET", "DELETE", "PATCH", "POST", "PUT", "HEAD", "OPTIONS"],
-			origin(request) {
-				return request.headers.set("Access-Control-Allow-Origin", "*");
-			},
-		}),
-	)
+	.use(cors())
 	.use(create_user_router)
 	.use(get_user_router)
 	.use(update_user_router)
