@@ -15,8 +15,7 @@ import {
 import cors from "@elysiajs/cors";
 
 const server = new Elysia()
-	.get("/", ({ set }) => {
-		set.headers = { "Access-Control-Allow-Origin": "*" };
+	.get("/", () => {
 		return new Response("🦊 Server is running");
 	})
 	.onError(({ error, set }) => {
