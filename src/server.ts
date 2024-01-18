@@ -29,13 +29,6 @@ const server = new Elysia()
 			credentials: true,
 			allowedHeaders: ["Content-type"],
 			methods: ["GET", "DELETE", "PATCH", "POST", "PUT", "HEAD", "OPTIONS"],
-			origin: (request): boolean => {
-				const origin = request.headers.get("origin");
-				if (!origin) {
-					return false;
-				}
-				return true;
-			},
 		}),
 	)
 	.use(create_user_router)
