@@ -1,13 +1,10 @@
-import { prisma } from "@/database/prisma";
 import { NotFoundError } from "elysia";
 import { get_todos as get_todos_repository } from "@/repositories";
+import { get_user } from "../users/get-user.controller";
 
 export async function get_todos(user_id: string) {
-	const user = await prisma.user.findUnique({ where: { id: user_id } });
+	await get_user(user_id);
 
-	if (!user) {
-		throw new NotFoundError("usuario não encontrado");
-	}
 	const data = await get_todos_repository(user_id);
 
 	if (!data) {
@@ -15,8 +12,8 @@ export async function get_todos(user_id: string) {
 	}
 
 	return {
-			status: 200,
-			message: "tarefas encontradas com sucesso",
-			data,
-		}
+		status: 200,
+		message: "tarefas encontradas com sucesso",
+		data,
+	};
 }

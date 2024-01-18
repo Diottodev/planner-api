@@ -1,5 +1,9 @@
-import { prisma } from "@/database/prisma";
+import { db } from "@/database/db";
+import { todos } from "@/database/schemas";
+import { eq } from "drizzle-orm";
 
-export async function get_todo(user_id: string, id: string) {
-	return await prisma.todo.findUnique({ where: { id, user_id } });
+export async function get_todo(id: string) {
+	return await db.query.todos.findFirst({
+		where: eq(todos.id, id),
+	});
 }

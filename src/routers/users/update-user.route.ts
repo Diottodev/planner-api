@@ -1,13 +1,16 @@
 import { update_user } from "@/controllers";
-import { CreateUserSchema, GetUserSchema } from "@/schemas/users/user.schema";
+import { GetUserSchema, UserSchema } from "@/schemas/users/user.schema";
 import { Elysia } from "elysia";
 
 export const update_user_router = (app: Elysia) =>
 	app.put(
-		"/api/users/update/:id",
-		async ({ body, params }) => await update_user(body, params.id),
+		"/api/users/account/update/:id",
+		async ({ body, params }) => {
+			const body_user = { ...body, id: params.id };
+			return await update_user(body_user);
+		},
 		{
-			body: CreateUserSchema,
+			body: UserSchema,
 			params: GetUserSchema,
 		},
 	);

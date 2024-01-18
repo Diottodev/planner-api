@@ -1,17 +1,13 @@
-import { prisma } from "@/database/prisma";
 import { NotFoundError } from "elysia";
 import { get_todos_from_status as get_todos_from_status_repository } from "@/repositories";
+import { get_user } from "../users/get-user.controller";
 
 export async function get_todos_from_status(
 	user_id: string,
 	status: "new" | "doing" | "completed",
 	important?: boolean,
 ) {
-	const user = await prisma.user.findUnique({ where: { id: user_id } });
-
-	if (!user) {
-		throw new NotFoundError("usuario não encontrado");
-	}
+	await get_user(user_id);
 
 	const data = await get_todos_from_status_repository(
 		user_id,
@@ -30,10 +26,10 @@ export async function get_todos_from_status(
 	};
 
 	return {
-			status: 200,
-			message: `tarefas ${translate_status[status]} ${
-				important === true ? "importantes" : ""
-			} encontradas com sucesso`,
-			data,
-		}
+		status: 200,
+		message: `tarefas ${translate_status[status]} ${
+			important === true ? "importantes" : ""
+		} encontradas com sucesso`,
+		data,
+	};
 }

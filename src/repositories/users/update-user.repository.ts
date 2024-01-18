@@ -1,6 +1,14 @@
-import { prisma } from "@/database/prisma";
-import { TCreateUser } from "@/schemas/users/user.schema";
+import { db } from "@/database/db";
+import { users } from "@/database/schemas";
+import { TUser } from "@/schemas";
+import { eq } from "drizzle-orm";
 
-export async function update_user(data: TCreateUser, id: string) {
-	return await prisma.user.update({ where: { id }, data });
+export async function update_user(values: TUser) {
+	return (
+		await db
+			.update(users)
+			.set(values)
+			.where(eq(users.id, values.id))
+			.returning()
+	).at(0);
 }

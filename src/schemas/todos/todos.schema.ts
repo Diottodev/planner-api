@@ -1,4 +1,6 @@
 import { t, Static as s } from "elysia";
+import { createInsertSchema, createSelectSchema } from "drizzle-typebox";
+import { todos } from "@/database/schemas";
 
 export enum EComplet {
 	new = "new",
@@ -6,24 +8,9 @@ export enum EComplet {
 	completed = "completed",
 }
 
-export const CreateTodoSchema = t.Object({
-	title: t.String(),
-	description: t.String(),
-	important: t.Boolean(),
-	completed: t.Optional(t.Enum(EComplet)),
-	user_id: t.Optional(t.String()),
-});
+export const CreateTodoSchema = createInsertSchema(todos);
 
-export const TodoSchema = t.Object({
-	id: t.String(),
-	title: t.String(),
-	description: t.String(),
-	important: t.Boolean(),
-	completed: t.Optional(t.Enum(EComplet)),
-	user_id: t.Optional(t.String()),
-	created_at: t.Optional(t.String()),
-	updated_at: t.Optional(t.String()),
-});
+export const TodoSchema = createSelectSchema(todos);
 
 export const QueryTodos = t.Object({
 	status: t.Optional(t.Enum(EComplet)),

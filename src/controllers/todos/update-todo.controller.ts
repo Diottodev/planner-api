@@ -1,14 +1,10 @@
-import { prisma } from "@/database/prisma";
 import { NotFoundError } from "elysia";
 import { update_todo as update_todo_repository } from "@/repositories";
 import { TTodo } from "@/schemas";
+import { get_user } from "../users/get-user.controller";
 
 export async function update_todo(body: TTodo) {
-	const user = await prisma.user.findUnique({ where: { id: body.user_id } });
-
-	if (!user) {
-		throw new NotFoundError("usuario não encontrado");
-	}
+	await get_user(body.user_id as string);
 
 	const data = await update_todo_repository(body);
 
@@ -17,8 +13,8 @@ export async function update_todo(body: TTodo) {
 	}
 
 	return {
-			status: 200,
-			message: "tarefas atualizada com sucesso",
-			data,
-		}
+		status: 200,
+		message: "tarefas atualizada com sucesso",
+		data,
+	};
 }

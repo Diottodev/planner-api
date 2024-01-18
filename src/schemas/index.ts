@@ -8,7 +8,6 @@ export {
 } from "./todos/todos.schema";
 export {
 	CreateUserSchema,
-	GetUserSchema,
 	UserSchema,
 	type TCreateUser,
 	type TUser,

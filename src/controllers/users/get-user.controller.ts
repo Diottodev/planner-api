@@ -9,8 +9,8 @@ export async function get_user(id: string) {
 	}
 
 	return {
-			status: 200,
-			message: "perfil encontrado",
-			data: user,
-		}
+		status: 200,
+		message: "perfil encontrado",
+		data: user,
+	};
 }

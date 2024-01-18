@@ -1,25 +1,20 @@
-import { prisma } from "@/database/prisma";
 import { TCreateTodo } from "@/schemas";
 import { NotFoundError } from "elysia";
 import { create_todo as create_todo_repository } from "@/repositories";
+import { get_user } from "../users/get-user.controller";
 
 export async function create_todo(body: TCreateTodo) {
-	const user = await prisma.user.findUnique({ where: { id: body.user_id } });
-	console.log(user);
+	await get_user(body.user_id as string);
 
-	if (!user) {
-		throw new NotFoundError("usuario não encontrado");
-	}
 	const data = await create_todo_repository(body);
-	console.log(data);
 
-	if (!data.id) {
+	if (!data) {
 		throw new NotFoundError("erro ao criar tarefa");
 	}
 
 	return {
-			status: 201,
-			message: "tarefa criada com sucesso",
-			data,
-		}
+		status: 201,
+		message: "tarefa criada com sucesso",
+		data,
+	};
 }

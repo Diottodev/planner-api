@@ -1,18 +1,20 @@
 import { update_user as update_user_repository } from "@/repositories/users/update-user.repository";
-import { TCreateUser } from "@/schemas/users/user.schema";
+import { TUser } from "@/schemas/users/user.schema";
 import { get_user } from "./get-user.controller";
+import { NotFoundError } from "elysia";
 
-export async function update_user(body: TCreateUser, id: string) {
-	const user = await get_user(id);
+export async function update_user(body: TUser) {
+	await get_user(body.id);
 
-	if (user.status !== 200) {
-		return user;
+	const data = await update_user_repository(body);
+
+	if (!data) {
+		throw new NotFoundError("erro ao atualizar conta");
 	}
-	const data = await update_user_repository(body, id);
 
 	return {
-			status: 200,
-			message: "perfil alterado com sucesso",
-			data,
-		}
+		status: 200,
+		message: "perfil alterado com sucesso",
+		data,
+	};
 }

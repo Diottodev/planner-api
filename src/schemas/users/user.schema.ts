@@ -1,24 +1,12 @@
 import { t, Static as s } from "elysia";
+import { createInsertSchema, createSelectSchema } from "drizzle-typebox";
+import { users } from "@/database/schemas";
 
 export const GetUserSchema = t.Object({ id: t.String() });
 
-export const CreateUserSchema = t.Object({
-	name: t.String(),
-	email: t.String({
-		format: "email",
-		error: "email invalido :(",
-	}),
-	photo: t.Optional(t.String()),
-});
+export const CreateUserSchema = createInsertSchema(users);
 
-export const UserSchema = t.Object({
-	id: t.Optional(t.String()),
-	name: t.String(),
-	email: t.String(),
-	photo: t.Optional(t.String()),
-	created_at: t.Optional(t.String()),
-	updated_at: t.Optional(t.String()),
-});
+export const UserSchema = createSelectSchema(users);
 
 export type TCreateUser = s<typeof CreateUserSchema>;
 export type TUser = s<typeof UserSchema>;
