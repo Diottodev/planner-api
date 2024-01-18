@@ -4,10 +4,11 @@ import {
 	convert_react_to_html,
 } from "@/auth";
 import { get_user_from_email } from "@/controllers/users/get-user-from-email.controller";
+import { db } from "@/database/db";
+import { auth_links } from "@/database/schemas";
 import { EmailAuthSchema } from "@/schemas/email/email-auth.schema";
 import { create_id } from "@/util/create-id";
 import { Elysia, NotFoundError } from "elysia";
-import { prisma } from "@/database/prisma";
 
 const env = process.env;
 
@@ -16,25 +17,12 @@ export const send_email_auth_router = (app: Elysia) =>
 		"/api/users/auth",
 		async ({ body }) => {
 			const user_from_email = await get_user_from_email(body.email);
-			if (user_from_email.status !== 200) {
-				throw new NotFoundError("email não cadastrado");
-			}
 
-			const response = user_from_email;
 			const auth_id = create_id();
 
-			await prisma.authLinks.upsert({
-				where: {
-					user_id: response.data.id,
-				},
-				update: {
-					code: auth_id,
-				},
-				create: {
-					user_id: response.data.id,
-					code: auth_id,
-				},
-			});
+			await db
+				.insert(auth_links)
+				.values({ code: auth_id, user_id: user_from_email.data.id });
 
 			const auth_link = new URL(
 				"/api/auth-links/authenticate",
@@ -44,7 +32,7 @@ export const send_email_auth_router = (app: Elysia) =>
 			auth_link.searchParams.set("redirect", env.AUTH_REDIRECT_API as string);
 
 			const html = convert_react_to_html(
-				body.name,
+				user_from_email.data.name,
 				"Confira o link de autenticação",
 				body.email,
 				auth_link.toString(),
