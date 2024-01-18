@@ -5,7 +5,7 @@
 		"generate": "drizzle-kit generate:pg",
 		"dev": "bun run --watch src/server.ts",
 		"build:prod": "bun build src/server.ts --target=bun --outfile=build/server.js && bun start",
-		"start": "bun generate && bun run build/server.js"
+		"start": "bun run --watch src/server.ts"
 	},
 	"dependencies": {
 		"@elysiajs/cookie": "^0.8.0",
