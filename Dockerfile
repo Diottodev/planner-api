@@ -7,7 +7,6 @@ COPY bun.lockb .
 COPY drizzle .
 
 RUN bun install
-RUN bun build:prod
 
 COPY . .
 
