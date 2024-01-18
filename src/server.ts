@@ -29,6 +29,9 @@ const server = new Elysia()
 			credentials: true,
 			allowedHeaders: ["Content-type"],
 			methods: ["GET", "DELETE", "PATCH", "POST", "PUT", "HEAD", "OPTIONS"],
+			origin(request) {
+				return request.headers.set("Access-Control-Allow-Origin", "*");
+			},
 		}),
 	)
 	.use(create_user_router)
