@@ -15,7 +15,8 @@ import {
 import cors from "@elysiajs/cors";
 
 const server = new Elysia()
-	.get("/", () => {
+	.get("/", ({ set }) => {
+		set.headers = { "Access-Control-Allow-Origin": "*" };
 		return new Response("🦊 Server is running");
 	})
 	.onError(({ error, set }) => {
@@ -24,7 +25,11 @@ const server = new Elysia()
 			message: error.message,
 		};
 	})
-	.use(cors())
+	.use(
+		cors({
+			origin: "*",
+		}),
+	)
 	.use(create_user_router)
 	.use(get_user_router)
 	.use(update_user_router)
