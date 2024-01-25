@@ -12,4 +12,4 @@ COPY . .
 
 EXPOSE 8080
 
-CMD ["bun", "build/server.js"]
+CMD ["bun", "build/src/server.js"]
