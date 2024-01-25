@@ -1,10 +1,12 @@
 {
 	"name": "planner-api",
 	"version": "1.0.50",
+	"main": "build/src/server.js",
+	"types": "build/src/server.d.ts",
 	"scripts": {
 		"generate": "drizzle-kit generate:pg",
 		"dev": "bun run --watch src/server.ts",
-		"build:prod": "bun build src/server.ts --target=bun --outfile=build/server.js && bun start",
+		"build:prod": "tsc",
 		"start": "bun run --watch src/server.ts"
 	},
 	"dependencies": {
