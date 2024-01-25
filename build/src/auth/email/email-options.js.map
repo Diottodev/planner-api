@@ -1,0 +1,1 @@
+{"version":3,"file":"email-options.js","sourceRoot":"","sources":["../../../../src/auth/email/email-options.ts"],"names":[],"mappings":";;;AAMO,MAAM,aAAa,GAAG,CAAC,EAAE,KAAK,EAAE,IAAI,EAAE,OAAO,EAAgB,EAAE,EAAE,CAAC,CAAC;IACzE,IAAI,EAAE,WAAW,OAAO,CAAC,GAAG,CAAC,UAAU,GAAG;IAC1C,EAAE,EAAE,KAAK;IACT,OAAO;IACP,IAAI;CACJ,CAAC,CAAC;AALU,QAAA,aAAa,iBAKvB"}
