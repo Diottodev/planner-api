@@ -1,6 +1,6 @@
 {
 	"name": "planner-api",
-	"version": "1.0.50",
+	"version": "1.0.51",
 	"main": "build/src/server.js",
 	"types": "build/src/server.d.ts",
 	"scripts": {
